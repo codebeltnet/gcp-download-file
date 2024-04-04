@@ -1,0 +1,16 @@
+services:
+  gcp-download:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - secrets:/secrets
+
+
+volumes:
+  secrets:
+    driver: local
+    driver_opts:
+      type: none
+      device: /mnt/c/source/secrets/gcp-download-file
+      o: bind
