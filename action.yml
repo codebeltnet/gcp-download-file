@@ -1,0 +1,53 @@
+name: GCP Download File
+description: Downloads an object from a GCP Cloud Storage bucket. Authentication is done using google-github-actions/auth and the installation of gcloud CLI uses google-github-actions/setup-gcloud.
+inputs:
+  serviceAccountKey:
+    description: A service account key in JSON format.
+    required: true
+  bucketName:
+    description: The name of the bucket containing the object you are downloading. For example, my-bucket. It will be prefixed with gs:// and suffixed with /.
+    required: true
+  objectName:
+    description: The name of the object you are downloading. For example, pets/dog.png.
+    required: true
+  destination:
+    description: The local path where you are saving your object. For example, /home/runner/work
+    required: true
+    default: '${{ github.workspace }}'
+  useObjectCache:
+    description: Whether to use the object cache or not. Default is to use the object cache.
+    required: true
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - if: inputs.useObjectCache == 'true'
+      name: Cache Object
+      id: cache-gcp-download-file
+      uses: actions/cache@v4.0.2
+      with:
+        path: ${{ inputs.destination }}
+        key: gcp-download-file-${{ inputs.bucketName }}-${{ inputs.objectName }}
+        enableCrossOsArchive: true
+
+    - if: steps.cache-gcp-download-file.outputs.cache-hit != 'true'
+      name: Authenticate using service account
+      uses: google-github-actions/auth@v2.1.2
+      with:
+        credentials_json: ${{ inputs.serviceAccountKey }}
+
+    - if: steps.cache-gcp-download-file.outputs.cache-hit != 'true'
+      name: Install GCP Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2.1.0
+
+    - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
+      name: Download object from bucket
+      run: |
+        sh -c "gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ inputs.destination }}"
+      shell: bash
+
+    - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
+      name: Download object from bucket
+      run: |
+        pwsh -c "gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ inputs.destination }}"
+      shell: pwsh
