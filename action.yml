@@ -44,12 +44,22 @@ runs:
       name: Download object from bucket
       run: |
         gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp
-        cp -r ${{ runner.temp }}/.gcp ${{ inputs.destination }}
       shell: bash
 
     - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Download object from bucket
       run: |
         gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp ${{ inputs.destination }}
-        Copy-Item ${{ runner.temp }}/.gcp -Destination ${{ inputs.destination }} -Recurse
+      shell: pwsh
+
+    - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
+      name: Copy downloaded object to destination
+      run: |
+        cp -r --verbose ${{ runner.temp }}/.gcp ${{ inputs.destination }}
+      shell: bash
+
+    - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
+      name: Copy downloaded object to destination
+      run: |
+        Copy-Item ${{ runner.temp }}/.gcp -Destination ${{ inputs.destination }} -Recurse -Verbose
       shell: pwsh
