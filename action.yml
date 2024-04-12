@@ -57,11 +57,11 @@ runs:
     - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Copy downloaded object to destination
       run: |
-        cp -r --verbose ${{ runner.temp }}/.gcp ${{ inputs.destination }}
+        cp -r --verbose ${{ runner.temp }}/.gcp/ ${{ inputs.destination }}
       shell: bash
 
     - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Copy downloaded object to destination
       run: |
-        Copy-Item ${{ runner.temp }}/.gcp -Destination ${{ inputs.destination }} -Recurse -Verbose
+        Copy-Item ${{ runner.temp }}/.gcp/ -Destination ${{ inputs.destination }} -Recurse -Verbose
       shell: pwsh
