@@ -26,7 +26,7 @@ runs:
       id: cache-gcp-download-file
       uses: actions/cache@v4.0.2
       with:
-        path: ${{ inputs.destination }}
+        path: ${{ runner.temp }}/.gcp
         key: gcp-download-file-${{ inputs.bucketName }}-${{ inputs.objectName }}
         enableCrossOsArchive: true
 
@@ -43,11 +43,13 @@ runs:
     - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Download object from bucket
       run: |
-        sh -c "gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ inputs.destination }}"
+        sh -c "gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp"
+        cp -r ${{ runner.temp }}/.gcp ${{ inputs.destination }}
       shell: bash
 
     - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Download object from bucket
       run: |
-        pwsh -c "gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ inputs.destination }}"
+        pwsh -c "gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp ${{ inputs.destination }}"
+        Copy-Item ${{ runner.temp }}/.gcp -Destination ${{ inputs.destination }} -Recurse
       shell: pwsh
