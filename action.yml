@@ -43,13 +43,15 @@ runs:
     - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Download object from bucket
       run: |
+        mkdir -p ${{ runner.temp }}/.gcp
         gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp
       shell: bash
 
     - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Download object from bucket
       run: |
-        gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp ${{ inputs.destination }}
+        mkdir -p ${{ runner.temp }}/.gcp
+        gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp
       shell: pwsh
 
     - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
