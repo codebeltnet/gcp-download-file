@@ -54,13 +54,13 @@ runs:
         gcloud storage cp gs://${{ inputs.bucketName }}/${{ inputs.objectName }} ${{ runner.temp }}/.gcp
       shell: pwsh
 
-    - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
+    - if: (success() && runner.os == 'Linux')
       name: Copy downloaded object to destination
       run: |
         cp --verbose ${{ runner.temp }}/.gcp/${{ inputs.objectName }} ${{ inputs.destination }}
       shell: bash
 
-    - if: (success() && runner.os == 'Windows' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
+    - if: (success() && runner.os == 'Windows')
       name: Copy downloaded object to destination
       run: |
         Copy-Item ${{ runner.temp }}/.gcp/${{ inputs.objectName }} -Destination ${{ inputs.destination }} -Verbose
