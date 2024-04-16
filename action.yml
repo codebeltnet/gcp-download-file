@@ -1,5 +1,5 @@
 name: GCP Download File
-description: Downloads an object from a GCP Cloud Storage bucket. Authentication is done using google-github-actions/auth and the installation of gcloud CLI uses google-github-actions/setup-gcloud.
+description: Downloads an object from a GCP Cloud Storage bucket.
 inputs:
   serviceAccountKey:
     description: A service account key in JSON format.
