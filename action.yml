@@ -65,3 +65,6 @@ runs:
       run: |
         Copy-Item ${{ runner.temp }}/.gcp/${{ inputs.objectName }} -Destination ${{ inputs.destination }} -Verbose
       shell: pwsh
+branding:
+  icon: 'umbrella'
+  color: 'blue'
