@@ -266,20 +266,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Other Actions
 
-:bookmark: [Analyze with Codecov](https://github.com/codebeltnet/codecov-scan)
-:bookmark: [Analyze with CodeQL](https://github.com/codebeltnet/codeql-scan)
-:bookmark: [Finalyze with CodeQL](https://github.com/codebeltnet/codeql-scan-finalize)
-:bookmark: [.NET Build](https://github.com/codebeltnet/dotnet-build)
-:bookmark: [.NET Pack](https://github.com/codebeltnet/dotnet-pack)
-:bookmark: [.NET Restore](https://github.com/codebeltnet/dotnet-restore)
-:bookmark: [.NET Test](https://github.com/codebeltnet/dotnet-test)
-:bookmark: [Install .NET SDK](https://github.com/codebeltnet/install-dotnet)
-:bookmark: [Install .NET Tool - MinVer](https://github.com/codebeltnet/dotnet-tool-install-minver)
-:bookmark: [Install .NET Tool - Report Generator](https://github.com/codebeltnet/dotnet-tool-install-reportgenerator)
-:bookmark: [Install .NET Tool - Sonar Scanner](https://github.com/codebeltnet/dotnet-tool-install-sonarscanner)
-:bookmark: [GCP Download File](https://github.com/codebeltnet/gcp-download-file)
-:bookmark: [Git Checkout](https://github.com/codebeltnet/git-checkout)
-:bookmark: [MinVer Calculate](https://github.com/codebeltnet/minver-calculate)
-:bookmark: [NuGet Push](https://github.com/codebeltnet/nuget-push)
-:bookmark: [Analyze with SonarCloud](https://github.com/codebeltnet/sonarcloud-scan)
+:bookmark: [Analyze with Codecov](https://github.com/codebeltnet/codecov-scan)\
+:bookmark: [Analyze with CodeQL](https://github.com/codebeltnet/codeql-scan)\
+:bookmark: [Finalyze with CodeQL](https://github.com/codebeltnet/codeql-scan-finalize)\
+:bookmark: [.NET Build](https://github.com/codebeltnet/dotnet-build)\
+:bookmark: [.NET Pack](https://github.com/codebeltnet/dotnet-pack)\
+:bookmark: [.NET Restore](https://github.com/codebeltnet/dotnet-restore)\
+:bookmark: [.NET Test](https://github.com/codebeltnet/dotnet-test)\
+:bookmark: [Install .NET SDK](https://github.com/codebeltnet/install-dotnet)\
+:bookmark: [Install .NET Tool - MinVer](https://github.com/codebeltnet/dotnet-tool-install-minver)\
+:bookmark: [Install .NET Tool - Report Generator](https://github.com/codebeltnet/dotnet-tool-install-reportgenerator)\
+:bookmark: [Install .NET Tool - Sonar Scanner](https://github.com/codebeltnet/dotnet-tool-install-sonarscanner)\
+:bookmark: [GCP Download File](https://github.com/codebeltnet/gcp-download-file)\
+:bookmark: [Git Checkout](https://github.com/codebeltnet/git-checkout)\
+:bookmark: [MinVer Calculate](https://github.com/codebeltnet/minver-calculate)\
+:bookmark: [NuGet Push](https://github.com/codebeltnet/nuget-push)\
+:bookmark: [Analyze with SonarCloud](https://github.com/codebeltnet/sonarcloud-scan)\
 :bookmark: [Finalyze with SonarCloud](https://github.com/codebeltnet/sonarcloud-scan-finalize)
