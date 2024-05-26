@@ -24,7 +24,7 @@ runs:
     - if: inputs.useObjectCache == 'true'
       name: Cache Object
       id: cache-gcp-download-file
-      uses: actions/cache@v4.0.2
+      uses: actions/cache@v4
       with:
         path: ${{ runner.temp }}/.gcp
         key: gcp-download-file-${{ inputs.bucketName }}-${{ inputs.objectName }}
@@ -32,13 +32,13 @@ runs:
 
     - if: steps.cache-gcp-download-file.outputs.cache-hit != 'true'
       name: Authenticate using service account
-      uses: google-github-actions/auth@v2.1.2
+      uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ inputs.serviceAccountKey }}
 
     - if: steps.cache-gcp-download-file.outputs.cache-hit != 'true'
       name: Install GCP Cloud SDK
-      uses: google-github-actions/setup-gcloud@v2.1.0
+      uses: google-github-actions/setup-gcloud@v2
 
     - if: (success() && runner.os == 'Linux' && steps.cache-gcp-download-file.outputs.cache-hit != 'true')
       name: Download object from bucket
